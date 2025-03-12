@@ -41,7 +41,17 @@
    - [Git Rev-List](#git-rev-list)
    - [Git Rev-Parse](#git-rev-parse)
    
-6. [Additional Useful Commands](#additional-useful-commands)
+6. [Conventional Commits](#conventional-commits)
+   - [Commit Message Structure](#commit-message-structure)
+   - [Types of Commits](#types-of-commits)
+   - [Scopes](#scopes)
+   - [Breaking Changes](#breaking-changes)
+   - [Examples](#examples)
+   - [Tools for Conventional Commits](#tools-for-conventional-commits)
+   - [Benefits of Structured Commits](#benefits-of-structured-commits)
+
+7. [Additional Useful Commands](#additional-useful-commands)
+
 
 ## Git Branching Commands
 
@@ -889,6 +899,89 @@ git rev-parse --abbrev-ref HEAD
 ```
 
 **Use Case:** Scripting and automation to get consistent reference to commits, branches, or repository locations.
+
+## Conventional Commits
+
+Conventional Commits is a specification that provides a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history, which makes it easier to write automated tools and to generate release notes.
+
+### Commit Message Structure
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Types of Commits
+
+- `feat`: A new feature for the user
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, etc)
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `perf`: A code change that improves performance
+- `test`: Adding missing tests or correcting existing tests
+- `build`: Changes that affect the build system or external dependencies
+- `ci`: Changes to CI configuration files and scripts
+- `chore`: Other changes that don't modify src or test files
+
+### Scopes
+
+Scopes provide additional contextual information and are placed within parentheses after the type.
+
+Examples:
+- `feat(parser): add ability to parse arrays`
+- `fix(database): prevent connection timeout`
+
+### Breaking Changes
+
+Breaking changes should be indicated by a `!` before the colon or by adding `BREAKING CHANGE:` in the footer.
+
+Example:
+- `feat!: send an email to the customer when a product is shipped`
+- `refactor(api)!: remove deprecated endpoint`
+
+### Examples
+
+```
+feat(user-auth): add password reset functionality
+
+Implements a secure way for users to reset their passwords through email verification.
+
+Closes #423
+```
+
+```
+fix: correct minor typos in code
+
+See the issue for details on the typos fixed.
+
+Fixes #142
+```
+
+```
+feat!: redesign user interface
+
+BREAKING CHANGE: The previous layout components are not compatible with the new design system.
+```
+
+### Tools for Conventional Commits
+
+- **Commitlint**: Lint commit messages
+- **Commitizen**: CLI wizard for formatting commits
+- **Standard Version**: Automate versioning and CHANGELOG generation
+- **Semantic Release**: Fully automated version management and package publishing
+
+### Benefits of Structured Commits
+
+- Automatically generating CHANGELOGs
+- Automatically determining a semantic version bump
+- Communicating the nature of changes to teammates and stakeholders
+- Making it easier for people to contribute to your projects
+- Triggering build and publish processes based on commit types
+- Making it easier for future maintainers to understand what happened and why
 
 ## Additional Useful Commands
 
